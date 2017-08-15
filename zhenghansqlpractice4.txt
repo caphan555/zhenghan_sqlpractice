@@ -1,0 +1,35 @@
+SQL> create table my_employee (id number(4) constraint my_employee_id_nn NOT NULL, last_name VARCHAR2(25), first_name VARCHAR2(25), userid VARCHAR2(8), salary NUMBER(9,2));
+
+Table created.
+
+SQL> describe my_employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(4)
+ LAST_NAME                                          VARCHAR2(25)
+ FIRST_NAME                                         VARCHAR2(25)
+ USERID                                             VARCHAR2(8)
+ SALARY                                             NUMBER(9,2)
+
+SQL> insert into my_employee values(1, 'Patel', 'Ralph', 'rpatel', 895);
+
+1 row created.
+
+SQL> insert into my_employee (id, last_name, first_name, userid, salary) values(2, 'Dancs', 'Betty', 'bdancs', 860);
+
+1 row created.
+
+SQL> select * from my_employee;
+
+        ID LAST_NAME                 FIRST_NAME                USERID           
+---------- ------------------------- ------------------------- --------         
+    SALARY                                                                      
+----------                                                                      
+         1 Patel                     Ralph                     rpatel           
+       895                                                                      
+                                                                                
+         2 Dancs                     Betty                     bdancs           
+       860                                                                      
+                                                                                
+
+SQL> spool close

@@ -1,0 +1,49 @@
+SQL> create table dept (id number(7)constraint department_id_pk primary key, name varchar2(25));
+
+Table created.
+
+SQL> describe dept;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(7)
+ NAME                                               VARCHAR2(25)
+
+SQL> insert into dept selecct department_id, department_name from departments;
+insert into dept selecct department_id, department_name from departments
+                         *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> insert into dept select department_id, department_name from departments;
+
+27 rows created.
+
+SQL> create table emp (id number(7), last_name varchar2(25), first_name varchar2(25), dept_id number(7) constraint emp_dept_id_fk references dept (id));
+
+Table created.
+
+SQL> describe emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(7)
+ LAST_NAME                                          VARCHAR2(25)
+ FIRST_NAME                                         VARCHAR2(25)
+ DEPT_ID                                            NUMBER(7)
+
+SQL> create table employees2 as select employee_id id, first_name, last_name, salary, dedpartment_id dept_id from employees;
+create table employees2 as select employee_id id, first_name, last_name, salary, dedpartment_id dept_id from employees
+                                                                                 *
+ERROR at line 1:
+ORA-00904: "DEDPARTMENT_ID": invalid identifier 
+
+
+SQL> create table employees2 as select employee_id id, first_name, last_name, salary, department_id dept_id from employees;
+
+Table created.
+
+SQL> drop table emp;
+
+Table dropped.
+
+SQL> spool close
